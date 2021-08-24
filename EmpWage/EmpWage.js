@@ -1,0 +1,1 @@
+console.log("Welcome To The Employee Wage Computation");
