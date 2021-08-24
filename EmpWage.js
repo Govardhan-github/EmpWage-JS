@@ -1,5 +1,5 @@
 console.log("Welcome To The Employee Wage Computation");
-//UC5-Computing The Monthly Employee Wage By Usimg While Loop
+//UC6-Computing The Monthly Employee Wage By Usimg Array
 {
  const IS_PART_TIME=1;
 const IS_FULL_TIME=2;
