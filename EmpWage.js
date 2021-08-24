@@ -10,7 +10,10 @@ const NUM_OF_WORKING_DAYS=20;
 const MAX_HOURS_IN_MONTH =160;
 let totalEmpHrs=0;
 let totalWorkingDays=0;
-
+let empDailyWageArr = new Array();
+function calDailyWage(empHrs){
+    return empHrs * WAGE_PER_HOUR;
+}
   function getWorkingHours(empCheck){
     switch(empCheck){
         case IS_PART_TIME:
@@ -25,8 +28,10 @@ let empHrs=0;
 while(totalEmpHrs <= MAX_HOURS_IN_MONTH && totalWorkingDays < NUM_OF_WORKING_DAYS){
     totalWorkingDays++;
     let empCheck = Math.floor(Math.random() * 10) % 3;
-    totalEmpHrs += getWorkingHours(empCheck);
+    empHrs = getWorkingHours(empCheck);
+    totalEmpHrs += empHrs;
+    empDailyWageArr.push(calDailyWage(empHrs));
 }
-let empWage = totalEmpHrs * WAGE_PER_HOUR;
+let empWage = calDailyWage(totalEmpHrs);
 console.log("Total Days " + totalWorkingDays + " Hours " + totalEmpHrs +  " Emp Wage "+ empWage);
 }
