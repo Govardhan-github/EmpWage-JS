@@ -1,5 +1,4 @@
 console.log("Welcome To The Employee Wage Computation");
-//UC8-Computing The Monthly Employee Wage By Usimg Array And Map
 {
     const IS_PART_TIME=1;
     const IS_FULL_TIME=2;
@@ -13,6 +12,8 @@ console.log("Welcome To The Employee Wage Computation");
     let empDailyWageArr = new Array();
     let empDailyWageMap =  new Map();
     let empDailyHrsMap=new Map();
+    let empDailyHrsAndDailyWageArr= new Array();
+
 
     function calDailyWage(empHrs)  {
         return empHrs * WAGE_PER_HOUR;
@@ -67,3 +68,30 @@ console.log("Welcome To The Employee Wage Computation");
     console.log("Total Part Time Working days " +PartWorkingDays);
 }
 
+//UC10-The Daily Wage And Dialy Hours By Using Object Creation
+const IS_PART_TIME=1;
+const IS_FULL_TIME=2;
+const PART_TIME_HOURS=4;
+const FULL_TIME_HOURS=8;
+const WAGE_PER_HOUR=20;
+const NUM_OF_WORKING_DAYS=20;
+const MAX_HOURS_IN_MONTH =160;
+let totalEmpHrs=0;
+let totalWorkingDays=0;
+let empDailyHrsAndDailyWageArr= new Array();
+    while(totalEmpHrs <= MAX_HOURS_IN_MONTH && totalWorkingDays < NUM_OF_WORKING_DAYS){
+        totalWorkingDays++;
+        let empCheck = Math.floor(Math.random() * 10) % 3;
+        empHrs = getWorkingHours(empCheck);
+        totalEmpHrs += empHrs;
+        empDailyHrsAndDailyWageArr.push(
+            {
+                dayNum : totalWorkingDays,
+                dailyHours:empHrs,
+                dailyWage: calDailyWage(empHrs),
+                toString(){
+                return '\nDay' + this.dayNum + ' => Working Hours Is ' + this.dailyHours + 'And Wage Earned = ' + this.dailyWage
+                },
+            }); 
+    }
+console.log("Showing Daily Hours Worked And Wage Earned " +empDailyHrsAndDailyWageArr);
