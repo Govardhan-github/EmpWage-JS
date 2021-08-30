@@ -7,11 +7,34 @@ class EmployeePayrollData{
         this.gender = params[3];
         this.startDate = params[4];
     }
+    get id(){return this._id;}
+    set id(id){
+        if(id > 0) this._id = id;
+        else throw "Invalid id";
+    }
     get name(){return this._name;}
     set name(name){
             let nameRegex = RegExp("^[A-Z]{1}[a-z]{2,}$");
             if(nameRegex.test(name))this._name = name;
             else throw "Name is Incorrect";
+        }
+        get salary(){return this._salary;}
+        set salary(salary){
+            if(salary > 0) this._salary = salary;
+            else throw "Enter Valid salary";
+        }
+    
+        get gender(){return this._gender;}
+        set gender(gender){
+            let genderRegex = RegExp("^[MF]$");
+            if(genderRegex.test(gender))this._gender = gender;
+            else throw "Enter Valid gender";
+        }
+    
+        get startDate(){return this._startDate;}
+        set startDate(startDate){
+            if(startDate <= new Date())this._startDate = startDate;
+            else throw "Enter valid date";
         }
     toString(){
         const options ={ year : "numeric", month : "long", day : "numeric"};
@@ -20,12 +43,17 @@ class EmployeePayrollData{
         return "id = "+ this.id + ", name = "+ this.name +", salary = "+this.salary +", gender = "+ this.gender +", startDate = "+ empDate;
                     }
 }
-
-let employeePayrollData = new EmployeePayrollData(1, "Govardhaneddy", 100000, "M", new Date());
+let employeePayrollData = new EmployeePayrollData(1, "Govardhan", 100000, "M", new Date());
 console.log(employeePayrollData.toString());
 try{
-let newEmployeePayrollData = new EmployeePayrollData(2, "Gopi", 200000, "M", new Date());
+let newEmployeePayrollData = new EmployeePayrollData(2, "gopi", 00000, "T", new Date());
 console.log(newEmployeePayrollData.toString());
+}catch(e){
+    console.error(e);
+}
+try{
+let newemployeePayrollData = new EmployeePayrollData(3, "Nikhila", 150000, "F", new Date());
+console.log(newemployeePayrollData.toString());
 }catch(e){
     console.error(e);
 }
