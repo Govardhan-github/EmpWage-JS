@@ -58,15 +58,15 @@ console.log("Welcome To The Employee Wage Computation");
     let nonWorkingDays = new Array();
     let PartWorkingDays = new Array();
     let fullWorkingDays = new Array();
-    empDailyHrsMap.forEach((value,key ,map) =>{
+    empDailyHrsMap.forEach((value,key ,Map) =>{
         if(value == 8) fullWorkingDays.push(key);
-        else if(value == 4) PartWorkingDays.push(key);
-        else nonWorkingDays.push(key);
-    });
-    console.log("Total Non Working days  : " +nonWorkingDays);
-    console.log("Total Full Time Working Days " + fullWorkingDays);
-    console.log("Total Part Time Working days " +PartWorkingDays);
-}
+       else if(value == 4) PartWorkingDays.push(key);
+            else nonWorkingDays.push(key);
+   });
+   console.log("Total Non Working days  : " +nonWorkingDays);
+   console.log("Total Full Time Working Days " + fullWorkingDays);
+   console.log("Total Part Time Working days " +PartWorkingDays);
+ }
 
 //UC10-The Daily Wage And Dialy Hours By Using Object Creation
 const IS_PART_TIME=1;
@@ -90,8 +90,31 @@ let empDailyHrsAndDailyWageArr= new Array();
                 dailyHours:empHrs,
                 dailyWage: calDailyWage(empHrs),
                 toString(){
-                return '\nDay' + this.dayNum + ' => Working Hours Is ' + this.dailyHours + 'And Wage Earned = ' + this.dailyWage
+                return '\nDay' + this.dayNum + ' => Working Hours Is ' + this.dailyHours + ' And Wage Earned = ' + this.dailyWage
                 },
             }); 
     }
 console.log("Showing Daily Hours Worked And Wage Earned " +empDailyHrsAndDailyWageArr);
+
+
+//Uc-11A-Object Operations By Uisng Arrow Functions
+let totalWages = empDailyHrsAndDailyWageArr
+                .filter(dailyHrsAndWage=>dailyHrsAndWage.dailyWage>0)
+                .reduce((totalWage,dailyHrsAndWage)=> totalWage += dailyHrsAndWage.dailyWage,0);
+let totalHrs = empDailyHrsAndDailyWageArr
+                .filter(dailyHrsAndWage=>dailyHrsAndWage.dailyWage>0)
+                .reduce((totalWage,dailyHrsAndWage)=> totalWage += dailyHrsAndWage.dailyHours,0);
+console.log("Total Wages " + totalWages + " Total Hours " + totalHrs);
+
+ // Show the full workings days using foreach 
+ console.log("Full Working Days ");
+ empDailyHrsAndDailyWageArr.filter(dailyHrsAndWage => dailyHrsAndWage.dailyHours == 8)
+                      .forEach(dailyHrsAndWage => console.log(dailyHrsAndWage.toString()));
+//Showing Part Working Days                      
+console.log("Part Working Days ");
+empDailyHrsAndDailyWageArr.filter(dailyHrsAndWage => dailyHrsAndWage.dailyHours == 4)
+                        .forEach(dailyHrsAndWage => console.log(dailyHrsAndWage.toString()));
+//Non Working Day By Using Map Function
+let nonWorkingDaysNum = empDailyHrsAndDailyWageArr.filter(dailyHrsAndWage => dailyHrsAndWage.dailyHours == 0)
+.map(dailyHrsAndWage => dailyHrsAndWage.dayNum);
+console.log("Non Woking Days : " + nonWorkingDaysNum);                        
