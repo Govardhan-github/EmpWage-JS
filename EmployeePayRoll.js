@@ -8,7 +8,11 @@ class EmployeePayrollData{
         this.startDate = params[4];
     }
     get name(){return this._name;}
-    set name(name){this._name = name;}
+    set name(name){
+            let nameRegex = RegExp("^[A-Z]{1}[a-z]{2,}$");
+            if(nameRegex.test(name))this._name = name;
+            else throw "Name is Incorrect";
+        }
     toString(){
         const options ={ year : "numeric", month : "long", day : "numeric"};
         const empDate = this.startDate === undefined ? "undefined" :
@@ -16,9 +20,12 @@ class EmployeePayrollData{
         return "id = "+ this.id + ", name = "+ this.name +", salary = "+this.salary +", gender = "+ this.gender +", startDate = "+ empDate;
                     }
 }
-let employeePayrollData = new EmployeePayrollData(1, "Govardhan Reddy", 100000);
+
+let employeePayrollData = new EmployeePayrollData(1, "Govardhaneddy", 100000, "M", new Date());
 console.log(employeePayrollData.toString());
-employeePayrollData.name = "Gopi";
-console.log(employeePayrollData.toString());
- let newEmpData = new EmployeePayrollData(2,"Gopi Reddy",1000005,"M",new Date());
- console.log(newEmpData.toString());
+try{
+let newEmployeePayrollData = new EmployeePayrollData(2, "Gopi", 200000, "M", new Date());
+console.log(newEmployeePayrollData.toString());
+}catch(e){
+    console.error(e);
+}
